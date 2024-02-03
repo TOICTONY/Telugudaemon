@@ -142,7 +142,7 @@ async def ping(_, message):
 
 
 @new_task
-async def AeonCallback(_, query):
+async def boombaCallback(_, query):
     message = query.message
     user_id = query.from_user.id
     data = query.data.split()
