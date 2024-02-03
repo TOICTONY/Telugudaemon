@@ -254,7 +254,7 @@ async def main():
     bot.add_handler(MessageHandler(ping, filters=command(BotCommands.PingCommand) & CustomFilters.authorized))
     bot.add_handler(MessageHandler(bot_help, filters=command(BotCommands.HelpCommand) & CustomFilters.authorized))
     bot.add_handler(MessageHandler(stats, filters=command(BotCommands.StatsCommand) & CustomFilters.authorized))
-    bot.add_handler(CallbackQueryHandler(AeonCallback, filters=regex(r'^aeon')))
+    bot.add_handler(CallbackQueryHandler(boombaCallback, filters=regex(r'^boomba')))
     LOGGER.info("Bot Started!")
     signal(SIGINT, exit_clean_up)
 
