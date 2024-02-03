@@ -138,8 +138,8 @@ async def take_ss(video_file, duration=None, total=1, gen_ss=False):
     tstamps = {}
     for eq_thumb in range(1, total+1):
         cmd[5] = str((duration // total) * eq_thumb)
-        tstamps[f"aeon_{eq_thumb}.jpg"] = strftime("%H:%M:%S", gmtime(float(cmd[5])))
-        cmd[-1] = ospath.join(des_dir, f"aeon_{eq_thumb}.jpg")
+        tstamps[f"boomba_{eq_thumb}.jpg"] = strftime("%H:%M:%S", gmtime(float(cmd[5])))
+        cmd[-1] = ospath.join(des_dir, f"boomba_{eq_thumb}.jpg")
         tasks.append(create_task(create_subprocess_exec(*cmd, stderr=PIPE)))
     status = await gather(*tasks)
     for task, eq_thumb in zip(status, range(1, total+1)):
