@@ -116,11 +116,13 @@ async def get_audio_thumb(audio_file):
     if not await aiopath.exists(des_dir):
         await mkdir(des_dir)
     des_dir = ospath.join(des_dir, f"{time()}.jpg")
-    cmd = ["render", "-hide_banner", "-loglevel", "error", "-i", audio_file, "-an", "-vcodec", "copy", des_dir]
+    cmd = ["ffmpeg", "-hide_banner", "-loglevel", "error",
+           "-i", audio_file, "-an", "-vcodec", "copy", des_dir]
     status = await create_subprocess_exec(*cmd, stderr=PIPE)
     if await status.wait() != 0 or not await aiopath.exists(des_dir):
         err = (await status.stderr.read()).decode().strip()
-        LOGGER.error(f'Error while extracting thumbnail from audio. Name: {audio_file} stderr: {err}')
+        LOGGER.error(
+            f'Error while extracting thumbnail from audio. Name: {audio_file} stderr: {err}')
         return None
     return des_dir
 
