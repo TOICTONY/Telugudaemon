@@ -42,14 +42,14 @@ async def stats(_, message):
     cpuUsage = cpu_percent(interval=0.5)
     quote = Quote.print().split('―', 1)[0].strip().replace("“", "").replace("”", "")
     limit_mapping = {
-        'Torrent'  : config_dict.get('TORRENT_LIMIT',  '∞'),
-        'Gdrive'   : config_dict.get('GDRIVE_LIMIT',   '∞'),
-        'Ytdlp'    : config_dict.get('YTDLP_LIMIT',    '∞'),
-        'Direct'   : config_dict.get('DIRECT_LIMIT',   '∞'),
-        'Leech'    : config_dict.get('LEECH_LIMIT',    '∞'),
-        'Clone'    : config_dict.get('CLONE_LIMIT',    '∞'),
-        'Mega'     : config_dict.get('MEGA_LIMIT',     '∞'),
-        'User task': config_dict.get('USER_MAX_TASKS', '∞')}
+        'Torrent'  : config_dict.get('TORRENT_LIMIT♻️',  '∞'),
+        'Gdrive'   : config_dict.get('GDRIVE_LIMIT💾',   '∞'),
+        'Ytdlp'    : config_dict.get('YTDLP_LIMIT📺',    '∞'),
+        'Direct'   : config_dict.get('DIRECT_LIMIT📈',   '∞'),
+        'Leech'    : config_dict.get('LEECH_LIMIT📉',    '∞'),
+        'Clone'    : config_dict.get('CLONE_LIMIT🔗',    '∞'),
+        'Mega'     : config_dict.get('MEGA_LIMIT🌑',     '∞'),
+        'User task': config_dict.get('USER_MAX_TASKS🔊', '∞')}
     system_info = f'<b>{quote}</b>\n\n'\
         f'<code>• Bot uptime🤖 :</code> {currentTime}\n'\
         f'<code>• Sys uptime✊ :</code> {osUptime}\n'\
@@ -82,7 +82,7 @@ async def start(client, message):
     if len(message.command) > 1 and message.command[1] == "boomba":
         await deleteMessage(message)
     elif len(message.command) > 1 and message.command[1] == "pmc":
-        await sendMessage(message, 'Bot started')
+        await sendMessage(message, 'Private Bot started')
         await deleteMessage(message)
     elif len(message.command) > 1 and len(message.command[1]) == 36:
         userid = message.from_user.id
@@ -167,7 +167,7 @@ async def boombaCallback(_, query):
             startLine = f"<b>Showing last {ind} lines from log.txt:</b> \n\n----------<b>START LOG</b>----------\n\n"
             endLine = "\n----------<b>END LOG</b>----------"
             btn = ButtonMaker()
-            btn.ibutton('Close', f'aeon {user_id} close')
+            btn.ibutton('Close', f'boomba {user_id} close')
             reply_message = await sendMessage(message, startLine + escape(Loglines) + endLine, btn.build_menu(1))
             await query.edit_message_reply_markup(None)
             await deleteMessage(message)
@@ -197,8 +197,8 @@ async def boombaCallback(_, query):
 @new_task
 async def log(_, message):
     buttons = ButtonMaker()
-    buttons.ibutton('Log display', f'aeon {message.from_user.id} logdisplay')
-    buttons.ibutton('Web paste', f'aeon {message.from_user.id} webpaste')
+    buttons.ibutton('Log display', f'boomba {message.from_user.id} logdisplay')
+    buttons.ibutton('Web paste', f'boomba {message.from_user.id} webpaste')
     reply_message = await sendFile(message, 'log.txt', buttons=buttons.build_menu(1))
     await deleteMessage(message)
     await five_minute_del(reply_message)
@@ -255,7 +255,7 @@ async def main():
     bot.add_handler(MessageHandler(bot_help, filters=command(BotCommands.HelpCommand) & CustomFilters.authorized))
     bot.add_handler(MessageHandler(stats, filters=command(BotCommands.StatsCommand) & CustomFilters.authorized))
     bot.add_handler(CallbackQueryHandler(boombaCallback, filters=regex(r'^boomba')))
-    LOGGER.info("Bot Started!")
+    LOGGER.info("Private Bot Started!")
     signal(SIGINT, exit_clean_up)
 
 bot.loop.run_until_complete(main())
