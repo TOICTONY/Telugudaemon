@@ -51,13 +51,13 @@ async def stats(_, message):
         'Mega'     : config_dict.get('MEGA_LIMIT',     '∞'),
         'User task': config_dict.get('USER_MAX_TASKS', '∞')}
     system_info = f'<b>{quote}</b>\n\n'\
-        f'<code>• Bot uptime :</code> {currentTime}\n'\
-        f'<code>• Sys uptime :</code> {osUptime}\n'\
-        f'<code>• CPU usage  :</code> {cpuUsage}%\n'\
-        f'<code>• RAM usage  :</code> {memory.percent}%\n'\
-        f'<code>• Disk usage :</code> {disk}%\n'\
-        f'<code>• Free space :</code> {get_readable_file_size(free)}\n'\
-        f'<code>• Total space:</code> {get_readable_file_size(total)}\n\n'
+        f'<code>• Bot uptime🤖 :</code> {currentTime}\n'\
+        f'<code>• Sys uptime✊ :</code> {osUptime}\n'\
+        f'<code>• CPU usage💾  :</code> {cpuUsage}%\n'\
+        f'<code>• RAM usage🏮  :</code> {memory.percent}%\n'\
+        f'<code>• Disk usage💿 :</code> {disk}%\n'\
+        f'<code>• Free space💈 :</code> {get_readable_file_size(free)}\n'\
+        f'<code>• Total space🌑:</code> {get_readable_file_size(total)}\n\n'
             
     limitations = f'<b>LIMITATIONS</b>\n\n'
     
@@ -118,7 +118,7 @@ async def start(client, message):
 
 
 async def restart(client, message):
-    restart_message = await sendMessage(message, 'Restarting...')
+    restart_message = await sendMessage(message, 'Restarting...😌')
     if scheduler.running:
         scheduler.shutdown(wait=False)
     for interval in [QbInterval, Interval]:
@@ -236,7 +236,7 @@ async def restart_notification():
     else:
         chat_id, msg_id = 0, 0
     if await aiopath.isfile(".restartmsg"):
-        rmsg = 'Restarted Successfully!'
+        rmsg = 'Restarted Successfully🤴'
         try:
             await bot.edit_message_text(chat_id=chat_id, message_id=msg_id, text=rmsg)
         except:
