@@ -12,20 +12,17 @@ from bot.helper.telegram_helper.bot_commands import BotCommands
 async def shell(_, message):
     cmd = message.text.split(maxsplit=1)
     if len(cmd) == 1:
-        await sendMessage(message, 'No command to execute was provided.')
+        await sendMessage(message, 'No command to execute was given.')
         return
     cmd = cmd[1]
     stdout, stderr, _ = await cmd_exec(cmd, shell=True)
     reply = ''
-
     if len(stdout) != 0:
         reply += f"*Stdout*\n{stdout}\n"
         LOGGER.info(f"Shell - {cmd} - {stdout}")
-
     if len(stderr) != 0:
         reply += f"*Stderr*\n{stderr}"
         LOGGER.error(f"Shell - {cmd} - {stderr}")
-
     if len(reply) > 3000:
         with BytesIO(str.encode(reply)) as out_file:
             out_file.name = "shell_output.txt"
