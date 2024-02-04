@@ -68,7 +68,5 @@ class TelegraphHelper:
                 content = content)
         return
 
-telegraph = TelegraphHelper(config_dict['AUTHOR_NAME'],
-                            config_dict['AUTHOR_URL'])
-
+telegraph = TelegraphHelper()
 bot_loop.run_until_complete(telegraph.create_account())
