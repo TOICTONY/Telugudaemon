@@ -163,7 +163,7 @@ class TgUploader:
             try:
                 mention = msg_user.mention(style='HTML')
                 uid = msg_user.id
-                msg = f"<b>Task started</b>\n\n<b>• User:</b> {mention}\n<b>• ID:</b> <code>{uid}</code>"
+                msg = f"<b>Leech started</b>\n\n<b>• User:</b> {mention}\n<b>• ID:</b> <code>{uid}</code>"
                 self.__leechmsg = await sendMultiMessage(config_dict['LEECH_DUMP_ID'], msg)
             except Exception as er:
                 await self.__listener.onUploadError(str(er))
