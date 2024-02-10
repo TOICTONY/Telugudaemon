@@ -204,28 +204,28 @@ def get_readable_message():
         globals()['PAGE_NO'] = PAGES
     for download in list(download_dict.values())[STATUS_START:STATUS_LIMIT+STATUS_START]:
         msg += f"{escape(f'{download.name()}')}\n"
-        msg += f"by {source(download)}\n\n"
-        msg += f"<b>{download.status()}...</b>"
+        msg += f"👤by {source(download)}\n\n"
+        msg += f"<b>💈{download.status()}...</b>"
         if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
-            msg += f"\n<code>{progress_bar(download.progress())}</code> {download.progress()}"
+            msg += f"\n🍿<code>{progress_bar(download.progress())}</code> {download.progress()}"
             msg += f"\n{download.processed_bytes()} of {download.size()}"
-            msg += f"\nSpeed: {download.speed()}"
-            msg += f'\nEstimated: {download.eta()}'
+            msg += f"\n📶Speed: {download.speed()}"
+            msg += f'\n🛂Estimated: {download.eta()}'
             if hasattr(download, 'seeders_num'):
                 try:
                     msg += f"\nSeeders: {download.seeders_num()} | Leechers: {download.leechers_num()}"
                 except:
                     pass
         elif download.status() == MirrorStatus.STATUS_SEEDING:
-            msg += f"\nSize: {download.size()}"
-            msg += f"\nSpeed: {download.upload_speed()}"
-            msg += f"\nUploaded: {download.uploaded_bytes()}"
-            msg += f"\nRatio: {download.ratio()}"
-            msg += f"\nTime: {download.seeding_time()}"
+            msg += f"\n🔵Size: {download.size()}"
+            msg += f"\n📶Speed: {download.upload_speed()}"
+            msg += f"\n🆙Uploaded: {download.uploaded_bytes()}"
+            msg += f"\n🌀Ratio: {download.ratio()}"
+            msg += f"\n⏳Time: {download.seeding_time()}"
         else:
-            msg += f"\nSize: {download.size()}"
-        msg += f"\nElapsed: {get_readable_time(time() - download.message.date.timestamp())}"
-        msg += f"\n/stop_{download.gid()[:8]}\n\n"
+            msg += f"\n🔵Size: {download.size()}"
+        msg += f"\n📈Elapsed: {get_readable_time(time() - download.message.date.timestamp())}"
+        msg += f"\n/🔴stop_{download.gid()[:8]}\n\n"
     if len(msg) == 0:
         return None, None
     dl_speed = 0
@@ -240,15 +240,15 @@ def get_readable_message():
                 up_speed += text_to_bytes(download.upload_speed())
     if tasks > STATUS_LIMIT:
         buttons = ButtonMaker()
-        buttons.ibutton("Prev", "status pre")
-        buttons.ibutton(f"{PAGE_NO}/{PAGES}", "status ref")
-        buttons.ibutton("Next", "status nex")
+        buttons.ibutton("🔙Prev", "status pre")
+        buttons.ibutton(f"♻️{PAGE_NO}/{PAGES}", "status ref")
+        buttons.ibutton("⏭️Next", "status nex")
         button = buttons.build_menu(3)
-    msg += f"<b>• Tasks</b>: {tasks}{bmax_task}"
-    msg += f"\n<b>• Bot uptime</b>: {currentTime}"
-    msg += f"\n<b>• Free disk space</b>: {get_readable_file_size(disk_usage('/usr/src/app/downloads/').free)}"
-    msg += f"\n<b>• Uploading speed</b>: {get_readable_file_size(up_speed)}/s"
-    msg += f"\n<b>• Downloading speed</b>: {get_readable_file_size(dl_speed)}/s"
+    msg += f"<b>• 🚧Tasks</b>: {tasks}{bmax_task}"
+    msg += f"\n<b>• ⏰Bot uptime</b>: {currentTime}"
+    msg += f"\n<b>• 📭Free disk space</b>: {get_readable_file_size(disk_usage('/usr/src/app/downloads/').free)}"
+    msg += f"\n<b>• 🔺Uploading speed</b>: {get_readable_file_size(up_speed)}/s"
+    msg += f"\n<b>• 🔻Downloading speed</b>: {get_readable_file_size(dl_speed)}/s"
     return msg, button
 
 
