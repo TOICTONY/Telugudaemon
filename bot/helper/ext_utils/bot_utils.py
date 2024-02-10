@@ -190,7 +190,7 @@ def source(self):
 
 
 def get_readable_message():
-    msg = '<b>Powered by Private king</b>\n\n'
+    msg = '<a href="https://t.me/+CLMp3nb8MQE5N2Jl"><b>♥️ 𝗣𝗼𝘄𝗲𝗿𝗲𝗱 𝗕𝘆 @PRIVATE_KING</b></a>\n\n'
     button = None
     tasks = len(download_dict)
     currentTime = get_readable_time(time() - botStartTime)
